@@ -1,0 +1,152 @@
+@use '@angular/material' as mat;
+@import '@angular/cdk/overlay-prebuilt.css';
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #007944;
+  --color-primary-dark: #004D2C;
+  --color-primary-tint: #E6F2EC;
+  --color-text-main: #0A1A12;
+  --color-text-muted: #5C6B63;
+  --color-bg: #FCFDFB;
+  --color-link: #006097;
+  --color-error: #D93025;
+
+  /* Angular Material system color overrides */
+  --mat-sys-primary: var(--color-primary);
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: var(--color-primary-tint);
+  --mat-sys-on-primary-container: var(--color-primary-dark);
+  --mat-sys-surface: var(--color-bg);
+  --mat-sys-on-surface: var(--color-text-main);
+  --mat-sys-surface-container-lowest: #ffffff;
+  --mat-sys-surface-container-low: #f7fbf8;
+  --mat-sys-surface-container: #f1f8f4;
+  --mat-sys-surface-container-high: #ecf5ef;
+  --mat-sys-surface-container-highest: #e6f2ec;
+  --mat-sys-outline: #c7d6cd;
+  --mat-sys-error: var(--color-error);
+}
+
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$green-palette,
+    tertiary: mat.$orange-palette,
+  ),
+  typography: (
+    plain-family: 'Inter, system-ui, sans-serif',
+    brand-family: 'Inter, system-ui, sans-serif',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+html {
+  @include mat.all-component-themes($theme);
+}
+
+// ── Global resets ────────────────────────────────────────────────────────────
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+a:not(.mat-mdc-button-base) {
+  color: var(--color-link);
+}
+
+.text-gray-500,
+.text-gray-600,
+.text-gray-400 {
+  color: var(--color-text-muted) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--color-bg) !important;
+}
+
+/* Keep dashboard shell on-brand instead of default Material lavender surfaces */
+.mat-drawer-container,
+.mat-drawer-content {
+  background-color: var(--color-bg) !important;
+  color: var(--color-text-main);
+}
+
+.mat-drawer {
+  background-color: #f7fbf8 !important;
+  border-right: 1px solid #dbe9e0;
+}
+
+// ── Utility helpers ──────────────────────────────────────────────────────────
+.mat-card-actions-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.create-property-dialog-content {
+  overflow-x: hidden !important;
+}
+
+/* ── Palette enforcement: override Material component tokens ─────────────── */
+
+/* Filled / raised buttons */
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary {
+  --mdc-filled-button-container-color: #007944 !important;
+  --mdc-filled-button-label-text-color: #ffffff !important;
+  --mat-filled-button-state-layer-color: #004D2C !important;
+}
+
+/* Stroked buttons – primary */
+.mat-mdc-outlined-button.mat-primary {
+  --mdc-outlined-button-label-text-color: #007944 !important;
+  --mdc-outlined-button-outline-color: #007944 !important;
+}
+
+/* Stroked buttons – warn (Reject) */
+.mat-mdc-outlined-button.mat-warn {
+  --mdc-outlined-button-label-text-color: #D93025 !important;
+  --mdc-outlined-button-outline-color: #D93025 !important;
+}
+
+/* Mat cards */
+.mat-mdc-card {
+  --mdc-elevated-card-container-color: #ffffff !important;
+  --mdc-outlined-card-container-color: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Sidenav active state */
+.mat-mdc-list-item.mdc-list-item--activated {
+  background-color: #E6F2EC !important;
+  color: #004D2C !important;
+}
+
+/* Remove any residual blue/indigo from ripple layers */
+.mat-ripple-element {
+  background-color: rgba(0, 121, 68, 0.12) !important;
+}

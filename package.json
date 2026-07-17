@@ -1,0 +1,27 @@
+{
+  "name": "realestatepro",
+  "version": "1.0.0",
+  "description": "RealEstatePro is a full-stack real estate management application designed to handle property listings, tenant applications, and managerial dashboards. It leverages a modern architecture with a responsive frontend and a robust backend API.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbbasDevs/RealEstatePro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AbbasDevs/RealEstatePro/issues"
+  },
+  "homepage": "https://github.com/AbbasDevs/RealEstatePro#readme",
+  "dependencies": {
+    "playwright": "^1.61.1"
+  }
+}
